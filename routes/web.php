@@ -14,5 +14,14 @@ Route::resource('books', BookController::class);
 Route::resource('category', CategoryController::class)->except(['show']);
 Route::resource('members', MemberController::class);
 Route::resource('loans', LoanController::class);
-Route::put('loans/{id}/kembalikan', [LoanController::class, 'kembalikan'])
+Route::put('    ', [LoanController::class, 'kembalikan'])
     ->name('loans.kembalikan');
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return "Halaman atmint";
+    });
+
+    Route::get('/info', function () {
+        return 'Halaman informasi atmint';
+    });
+});
