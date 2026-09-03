@@ -7,6 +7,30 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Application Name
+Library Application
+
+## Objective
+This application was created as a learning project to practice developing a library management application.
+
+## How to Run Application
+1. Clone repository
+git clone "https://github.com/EnokhIovan/app-perpustakaan.git"
+
+2. Change directory to project
+cd "app-perpustakaan"
+
+3. Install dependency
+npm install
+
+4. Run the app
+php artisan serve
+
+## Difference Between Model, View, and Controller
+- Model is responsible for managing the application's data.
+- View handles the interface displayed to the user.
+- Controller acts as an intermediary between the Model and the View and manages the application's flow.
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
