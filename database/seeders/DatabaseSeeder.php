@@ -93,5 +93,23 @@ class DatabaseSeeder extends Seeder
 				'category_id' => 2,
 			],
 		]);
+
+		User::insert([
+			[
+				'name' => 'Admin',
+				'email' => 'admin@dummy.com',
+				'password' => bcrypt('password'),
+			],
+			[
+				'name' => 'Petugas 1',
+				'email' => 'petugas1@dummy.com',
+				'password' => bcrypt('password'),
+			],
+			[
+				'name' => 'Petugas 2',
+				'email' => 'petugas2@dummy.com',
+				'password' => bcrypt('password'),
+			],
+		]);
 	}
 }
