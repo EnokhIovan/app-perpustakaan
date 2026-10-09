@@ -7,9 +7,11 @@
         body { font-family: sans-serif; margin: 40px; max-width: 500px; }
         label { display: block; margin-top: 12px; font-weight: bold; }
         input, select { width: 100%; padding: 6px; margin-top: 4px; box-sizing: border-box; }
-        .checkbox-list { border: 1px solid #ccc; border-radius: 4px; padding: 10px; margin-top: 4px; max-height: 200px; overflow-y: auto; }
-        .checkbox-list label { display: block; font-weight: normal; margin-top: 0; }
+        .checkbox-list { border: 1px solid #ccc; border-radius: 4px; padding: 10px; margin-top: 4px; max-height: 200px; overflow-y: auto; display: flex; flex-direction: column}
+        .checkbox-list > div { margin: 4px 0; display: flex; justify-content: space-evenly; }
+        .checkbox-list label { display: flex; font-weight: normal; margin-top: 0; align-items: center; user-select: none }
         .error { color: #b91c1c; font-size: 14px; margin-top: 4px; }
+        .checkbox-list input { width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
         .btn { margin-top: 20px; padding: 8px 16px; background: #2563eb; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
     </style>
 </head>
@@ -34,18 +36,7 @@
         @enderror
 
         <label for="user_id">Petugas</label>
-        <select name="user_id" id="user_id">
-            <option value="">-- Pilih Petugas --</option>
-            @foreach ($users as $user)
-                <option value="{{ $user['id'] }}" @selected(old('user_id') == $user['id'])>
-                    {{ $user['name'] }}
-                </option>
-            @endforeach
-        </select>
-        @error('user_id')
-            <div class="error">{{ $message }}</div>
-        @enderror
-        <p><em>Catatan: dropdown petugas dipilih manual karena login belum ada - otomatis dari user yang login mulai Pertemuan 8.</em></p>
+        <p><em>Petugas pencatat: {{ auth()->user()->name}} (otomatis dari akun yang login)</em></p>
 
         <label for="tanggal_pinjam">Tanggal Pinjam</label>
         <input type="date" name="tanggal_pinjam" id="tanggal_pinjam" value="{{ old('tanggal_pinjam') }}">
@@ -62,11 +53,11 @@
         <label>Buku yang Dipinjam</label>
         <div class="checkbox-list">
             @forelse ($books as $book)
-                <label>
-                    <input type="checkbox" name="book_ids[]" value="{{ $book['id'] }}"
+                <div>
+                    <label for="item-{{ $book['id']}}">{{ $book["judul"] }}</label>
+                    <input type="checkbox" name="book_ids[]" value="{{ $book['id'] }}" id="item-{{ $book['id']}}"
                         @checked(in_array($book['id'], old('book_ids', [])))>
-                    {{ $book['judul'] }} (stok: {{ $book['stok'] }})
-                </label>
+                </div>
             @empty
                 <p>Belum ada data buku.</p>
             @endforelse
