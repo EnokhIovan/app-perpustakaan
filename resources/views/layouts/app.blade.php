@@ -12,6 +12,7 @@
         nav ul li a { color: #cbd5e1; text-decoration: none; padding: 6px 4px; }
         nav ul li a.active { color: #fff; font-weight: bold; border-bottom: 2px solid #fff; }
         nav .navbar-user { display: flex; align-items: center; gap: 12px; color: #cbd5e1; font-size: 14px; }
+        nav .navbar-user a { color: #cbd5e1; text-decoration: none; user-select: none; }
         nav .btn-logout { background: none; border: 1px solid #cbd5e1; color: #cbd5e1; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 14px; }
         nav .btn-logout:hover { background: #1e40af; color: #fff; }
         main { max-width: 900px; margin: 0 auto; padding: 30px 40px; }
