@@ -11,31 +11,20 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
+        // File: database/seeders/UserSeeder.php (ganti nilai 'name' di tiga updateOrCreate())
         User::updateOrCreate(
             ['email' => 'admin@pens.ac.id'],
-            [
-                'name' => 'Admin Perpustakaan',
-                'password' => Hash::make('password'),
-                'role' => 'admin',
-            ]
+            ['name' => 'Sokrates', 'password' => Hash::make('password'), 'role' => 'admin']
         );
 
         User::updateOrCreate(
             ['email' => 'petugas1@pens.ac.id'],
-            [
-                'name' => 'Petugas Satu',
-                'password' => Hash::make('password'),
-                'role' => 'petugas',
-            ]
+            ['name' => 'Pluto', 'password' => Hash::make('password'), 'role' => 'petugas']
         );
 
         User::updateOrCreate(
             ['email' => 'petugas2@pens.ac.id'],
-            [
-                'name' => 'Petugas Dua',
-                'password' => Hash::make('password'),
-                'role' => 'petugas',
-            ]
+            ['name' => 'Barnabas', 'password' => Hash::make('password'), 'role' => 'petugas']
         );
     }
 }

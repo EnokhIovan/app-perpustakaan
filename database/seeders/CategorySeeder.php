@@ -2,33 +2,26 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Category;
+use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
 {
     public function run(): void
     {
-        Category::updateOrCreate(
-            ['nama_kategori' => 'Fiksi'],
-            [
-                'deskripsi' => 'Buku cerita rekaan seperti novel dan kumpulan cerpen.',
-            ]
-        );
+        $categories = [
+            ['nama_kategori' => 'Novel', 'deskripsi' => 'Buku fiksi panjang dengan alur cerita dan karakter yang kompleks.'],
+            ['nama_kategori' => 'Komik', 'deskripsi' => 'Buku bergambar dengan narasi cerita yang divisualisasikan.'],
+            ['nama_kategori' => 'Sains', 'deskripsi' => 'Buku seputar ilmu pengetahuan alam dan penelitian ilmiah.'],
+            ['nama_kategori' => 'Teknologi', 'deskripsi' => 'Buku seputar pemrograman, komputer, dan perkembangan teknologi.'],
+            ['nama_kategori' => 'Sejarah', 'deskripsi' => 'Buku seputar peristiwa dan tokoh sejarah.'],
+        ];
 
-        Category::updateOrCreate(
-            ['nama_kategori' => 'Teknologi'],
-            [
-                'deskripsi' => 'Buku seputar teknologi, pemrograman, dan ilmu komputer.',
-            ]
-        );
-
-        Category::updateOrCreate(
-            ['nama_kategori' => 'Sejarah'],
-            [
-                'deskripsi' => 'Buku bertema sejarah dan biografi tokoh.',
-            ]
-        );
+        foreach ($categories as $category) {
+            Category::updateOrCreate(
+                ['nama_kategori' => $category['nama_kategori']],
+                $category
+            );
+        }
     }
 }
