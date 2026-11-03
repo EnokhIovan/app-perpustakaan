@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Login - Perpustakaan Digital Kampus</title>
+    <title>Profile - Perpustakaan Digital Kampus</title>
     <style>
         body { font-family: sans-serif; margin: 0; background: #f1f5f9; display: flex; align-items: center; justify-content: center; min-height: 100vh;flex-direction: column; gap:8px }
         main { max-width: 900px; margin: 0 auto; padding: 30px 40px; }
