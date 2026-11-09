@@ -1,83 +1,194 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <a href="https://laravel.com" target="_blank">
+        <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
+    </a>
 </p>
 
-## Application Name
+# Application Name
+
 Library Application
 
-## Objective
-This application was created as a learning project to practice developing a library management application.
+# Objective
 
-## How to Run Application
-1. Clone repository
-git clone "https://github.com/EnokhIovan/app-perpustakaan.git"
+This application was created as a learning project to practice developing a library management application. It provides features for managing book categories, books, members, loans, returns, and reports.
 
-2. Change directory to project
-cd "app-perpustakaan"
+# How to Run Application
 
-3. Install dependency
+## Requirements
+
+Make sure the following software is installed:
+
+- PHP
+- Composer
+- MySQL
+- Git
+- Node.js and npm
+
+## 1. Clone Repository
+
+Clone the project repository:
+
+```bash
+git clone https://github.com/EnokhIovan/app-perpustakaan.git
+```
+
+## 2. Change Directory to Project
+
+Navigate to the project directory:
+
+```bash
+cd app-perpustakaan
+```
+
+## 3. Install Dependencies
+
+Install PHP dependencies using Composer:
+
+```bash
+composer install
+```
+
+Install frontend dependencies:
+
+```bash
 npm install
+```
 
-4. Run the app
+## 4. Configure Environment
+
+Copy the example environment file:
+
+```bash
+copy .env.example .env
+```
+
+For Linux/macOS:
+
+```bash
+cp .env.example .env
+```
+
+Generate the application key:
+
+```bash
+php artisan key:generate
+```
+
+Open the `.env` file and configure the database connection:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=db_perpustakaan
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### Database Configuration Explanation
+
+- `DB_CONNECTION`: Specifies the database driver used by the application, which is MySQL.
+- `DB_HOST`: Specifies the database server address. `127.0.0.1` refers to the local machine.
+- `DB_PORT`: Specifies the MySQL connection port, which defaults to `3306`.
+- `DB_DATABASE`: Specifies the database name used by the application.
+- `DB_USERNAME`: Specifies the MySQL username used to access the database.
+- `DB_PASSWORD`: Specifies the MySQL password. Leave it empty if the MySQL account does not use a password.
+
+Before running migrations, create a MySQL database named `db_perpustakaan` using phpMyAdmin or MySQL.
+
+### Internal API Configuration
+
+Add or adjust the following configuration in `.env`:
+
+```env
+INTERNAL_API_URL=http://127.0.0.1:8011
+```
+
+This configuration specifies the URL used by the application to communicate with its internal API server. Port `8011` is used for the second Laravel server.
+
+## 5. Run Database Migrations and Seeders
+
+Run the following command to create the database tables and insert initial data:
+
+```bash
+php artisan migrate --seed
+```
+
+To reset the database and recreate all tables with seed data:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+**Note:** The `migrate:fresh` command deletes all existing tables and data before recreating them. Use it only when resetting the database is intended.
+
+## 6. Run the Application
+
+This project requires two Laravel servers to run properly. The main application runs on port `8000`, while the internal API runs on port `8011`.
+
+Open two separate terminals in the project directory.
+
+### Terminal 1 — Main Application
+
+Run the main application server:
+
+```bash
 php artisan serve
+```
 
-## Difference Between Model, View, and Controller
-- Model is responsible for managing the application's data.
-- View handles the interface displayed to the user.
-- Controller acts as an intermediary between the Model and the View and manages the application's flow.
+Access the application through:
 
-## About Laravel
+```text
+http://127.0.0.1:8000
+```
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Terminal 2 — Internal API
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Run the internal API server:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+```bash
+php artisan serve --port=8011
+```
 
-## Learning Laravel
+The internal API will be available at:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+```text
+http://127.0.0.1:8011
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Both servers must remain running while using the application. The internal API is required by features such as Dashboard and Reports.
 
-## Laravel Sponsors
+## 7. Accessing the API
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+The API base URL is:
 
-### Premium Partners
+```text
+http://127.0.0.1:8000/api
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+You can use Postman to test the available API endpoints.
 
-## Contributing
+For requests that return JSON, add the following header:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```http
+Accept: application/json
+```
 
-## Code of Conduct
+Configure the HTTP method, endpoint, headers, and request body according to the available API routes.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 8. Stopping the Servers
 
-## Security Vulnerabilities
+To stop a server, select its terminal and press:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```text
+Ctrl + C
+```
 
-## License
+Repeat this for both terminals.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Difference Between Model, View, and Controller
+
+- **Model** is responsible for managing the application's data and interacting with the database.
+- **View** handles the interface displayed to the user.
+- **Controller** acts as an intermediary between the Model and the View and manages the application's flow.
